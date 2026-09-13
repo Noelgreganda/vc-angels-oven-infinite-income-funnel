@@ -54,10 +54,10 @@
 - **Deployment:** [To be filled in]
 
 ### Future Projects (Named in Scope)
-- **SIP** - [Status & details TBD]
+- **SIP** (Solar Install Pinoy) - [Affiliate system built & deployed]
 - **BrainAtlas** - [Status & details TBD]
 - **Training** - [Status & details TBD]
-- **Affiliate** - [Status & details TBD]
+- **Affiliate System** - ✅ Complete with QR code & affiliate invitation
 
 ---
 
