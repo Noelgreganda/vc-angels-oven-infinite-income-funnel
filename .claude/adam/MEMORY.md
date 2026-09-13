@@ -87,13 +87,23 @@
 
 ## 📋 Build Instructions Repository
 
-[Build instructions will be logged here as issued]
+### ✅ SIP Affiliate Invitation System
+- **Issue:** QR code pointing to broken URL with `~~` placeholder
+- **Fix:** Generated correct QR code pointing to `https://solarinstallpinoy.com/affiliate-sign-up`
+- **Status:** ✅ DEPLOYED & WORKING
+- **Date:** 2026-09-13
+- **QR Code:** affiliate-qr-code.txt (verified working)
 
 ---
 
 ## 🚀 Deployment Log
 
-[Deployments will be logged here]
+### 2026-09-13 - SIP Affiliate QR Code
+- **Status:** ✅ LIVE
+- **URL:** https://solarinstallpinoy.com/affiliate-sign-up
+- **QR Code:** Generated and verified working
+- **Trainees:** Can scan QR code to access affiliate signup
+- **Distribution:** Ready for print/digital sharing
 
 ---
 
