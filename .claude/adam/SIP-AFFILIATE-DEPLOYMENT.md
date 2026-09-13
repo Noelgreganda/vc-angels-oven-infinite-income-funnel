@@ -11,11 +11,10 @@ https://sipai-legal.web.app/qa/
 Firebase Hosting project `sipai-legal`. This is the affiliate signup form
 trainees fill in (name, phone, email, Messenger profile, FB group membership).
 
-`solarinstallpinoy.com` is NOT registered yet (DNS_PROBE_FINISHED_NXDOMAIN),
-so nothing may point there until the domain is bought and connected to
-Firebase Hosting. When that happens, add it as a custom domain in the
-`sipai-legal` Firebase project and the QR below keeps working unchanged
-(the QR encodes the Firebase URL directly, not the custom domain).
+`solarinstallpinoy.com` is NOT registered (DNS_PROBE_FINISHED_NXDOMAIN) and
+there's no plan to buy it, so the QR and every link below point straight at
+the Firebase URL. Don't reintroduce a `solarinstallpinoy.com` redirect for
+this project unless that decision changes.
 
 ## The QR code
 
@@ -40,6 +39,6 @@ The script exits non-zero if the image cannot be decoded or decodes to a differe
 
 ## Notes
 
-- The `/affiliates` and `/affiliate-sign-up` routes added to this Next.js app
-  redirect to the Firebase form, but this app is not deployed at
-  `solarinstallpinoy.com`, so they are inert until that domain exists.
+- No redirect routes live in this Next.js app for this — it isn't deployed
+  at any domain tied to the affiliate program, so a route here would never
+  run. The Firebase URL is the canonical link; share it directly.
