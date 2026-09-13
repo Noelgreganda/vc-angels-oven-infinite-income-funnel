@@ -92,8 +92,18 @@
 - **Fix:** Generated correct QR code pointing to `https://sipai-legal.web.app/qa/`
 - **Status:** ✅ DEPLOYED & WORKING
 - **Date:** 2026-09-13
-- **QR Code:** `public/sip-affiliate-signup-qr.png` (decoded back and verified)
-- **Note:** `solarinstallpinoy.com` is not registered yet; QR encodes the Firebase URL directly
+- **QR Code:** `public/sip-affiliate-signup-qr.png` (decoded back with `jsqr` and verified)
+- **Full details:** `.claude/adam/SIP-AFFILIATE-DEPLOYMENT.md` (single source of truth for this)
+- **Decision:** `solarinstallpinoy.com` is not registered and there's no plan
+  to buy it. Do not build redirects, email addresses, or QR codes against
+  that domain for this project — use the Firebase URL directly.
+- **Cleanup:** Removed the dead `affiliate-invitation-system.tsx` (unreachable,
+  imported an uninstalled package) and the unverified CDN-based QR generator
+  in `affiliate-invitation.html` (now embeds the verified PNG directly, no
+  external dependency). One working implementation, not three.
+- **Open item:** `affiliate-invitation.html` has a placeholder where the
+  support contact email goes — the old `affiliate@solarinstallpinoy.com` is
+  dead. Needs a real email before distributing that page.
 
 ---
 
