@@ -101,9 +101,8 @@
   imported an uninstalled package) and the unverified CDN-based QR generator
   in `affiliate-invitation.html` (now embeds the verified PNG directly, no
   external dependency). One working implementation, not three.
-- **Open item:** `affiliate-invitation.html` has a placeholder where the
-  support contact email goes — the old `affiliate@solarinstallpinoy.com` is
-  dead. Needs a real email before distributing that page.
+- **Contact email:** `affiliate-invitation.html` shows `solarinstall.pinoy@gmail.com`
+  (set 2026-09-13), replacing the dead `affiliate@solarinstallpinoy.com`.
 
 ---
 

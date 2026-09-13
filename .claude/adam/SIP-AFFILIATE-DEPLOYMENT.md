@@ -41,13 +41,12 @@ The script exits non-zero if the image cannot be decoded or decodes to a differe
   library, nothing that can silently fail or drift out of sync with the
   verified PNG. Open it in a browser or host it anywhere as a single file.
 
-## Outstanding: contact email
+## Contact email
 
-`affiliate-invitation.html` has a placeholder — `[SET REAL CONTACT EMAIL -
-solarinstallpinoy.com is not owned]` — where a support email used to be.
-The old one (`affiliate@solarinstallpinoy.com`) is dead since that domain
-isn't owned. Replace the placeholder with a real inbox before distributing
-this page.
+`affiliate-invitation.html` shows `solarinstall.pinoy@gmail.com` as the
+support contact (set 2026-09-13). The old `affiliate@solarinstallpinoy.com`
+was dropped since that domain isn't owned. If this inbox changes, it's a
+one-line edit in that file (`mailto:` link + visible text).
 
 ## Notes
 
