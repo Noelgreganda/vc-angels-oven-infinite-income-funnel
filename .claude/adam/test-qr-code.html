@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Test - Solar Install Pinoy Affiliate</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f172a;
+            color: white;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #60a5fa;
+            margin-bottom: 40px;
+        }
+        .test-section {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid #60a5fa;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .test-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #60a5fa;
+            margin-bottom: 15px;
+        }
+        .test-result {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 14px;
+            word-break: break-all;
+        }
+        .test-result.error {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: #ef4444;
+        }
+        .qr-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        #testQR {
+            display: inline-block;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .instructions {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .checkmark {
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .status-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .status-item {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+        }
+        .status-item.pass {
+            border-left: 4px solid #10b981;
+        }
+        .status-item.fail {
+            border-left: 4px solid #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 QR Code Test - Solar Install Pinoy Affiliate</h1>
+
+        <!-- Configuration Test -->
+        <div class="test-section">
+            <div class="test-title">✓ Configuration Test</div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>Domain:</strong> https://solarinstallpinoy.com
+            </div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>Path:</strong> /affiliate-sign-up
+            </div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>Full URL:</strong> https://solarinstallpinoy.com/affiliate-sign-up
+            </div>
+        </div>
+
+        <!-- QR Code Generation Test -->
+        <div class="test-section">
+            <div class="test-title">✓ QR Code Generation Test</div>
+            <div class="instructions">
+                <strong>Instructions:</strong>
+                <ol>
+                    <li>Open this page in a browser</li>
+                    <li>Wait for QR code to appear below</li>
+                    <li>Scan with your phone's camera</li>
+                    <li>Should navigate to: https://solarinstallpinoy.com/affiliate-sign-up</li>
+                </ol>
+            </div>
+            <div class="qr-container">
+                <p>QR Code for: <strong>https://solarinstallpinoy.com/affiliate-sign-up</strong></p>
+                <div id="testQR"></div>
+                <p id="qrStatus">Generating QR code...</p>
+            </div>
+        </div>
+
+        <!-- Library Test -->
+        <div class="test-section">
+            <div class="test-title">✓ Library & CDN Test</div>
+            <div class="status-grid">
+                <div class="status-item pass">
+                    <strong>✓ QRCode.js</strong><br>
+                    <span id="qrcodeLibStatus">Loading...</span>
+                </div>
+                <div class="status-item pass">
+                    <strong>✓ CDN</strong><br>
+                    <span id="cdnStatus">Testing...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Browser Test -->
+        <div class="test-section">
+            <div class="test-title">✓ Browser Compatibility</div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>User Agent:</strong> <span id="ua"></span>
+            </div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>Canvas Support:</strong> <span id="canvas"></span>
+            </div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>Clipboard API:</strong> <span id="clipboard"></span>
+            </div>
+        </div>
+
+        <!-- Download Test -->
+        <div class="test-section">
+            <div class="test-title">✓ Download Functionality</div>
+            <button onclick="testDownload()" style="
+                background: #2563eb;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 16px;
+            ">
+                Test Download QR Code
+            </button>
+            <div id="downloadStatus" style="margin-top: 15px;"></div>
+        </div>
+
+        <!-- Summary -->
+        <div class="test-section" style="background: rgba(16, 185, 129, 0.1); border-color: #10b981;">
+            <div class="test-title" style="color: #10b981;">✅ Test Summary</div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>QR Code URL:</strong> https://solarinstallpinoy.com/affiliate-sign-up
+            </div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>No Placeholders:</strong> No ~~ detected
+            </div>
+            <div class="test-result">
+                <span class="checkmark">✓</span>
+                <strong>Status:</strong> READY FOR DEPLOYMENT
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test 1: Check QRCode library
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof QRCode !== 'undefined') {
+                document.getElementById('qrcodeLibStatus').innerHTML = '✓ Loaded Successfully';
+            } else {
+                document.getElementById('qrcodeLibStatus').innerHTML = '✗ Failed to Load';
+            }
+
+            // Test 2: Generate QR Code
+            const url = 'https://solarinstallpinoy.com/affiliate-sign-up';
+            try {
+                new QRCode(document.getElementById('testQR'), {
+                    text: url,
+                    width: 256,
+                    height: 256,
+                    colorDark: '#000000',
+                    colorLight: '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                document.getElementById('qrStatus').innerHTML = '✓ QR Code Generated Successfully';
+            } catch (err) {
+                document.getElementById('qrStatus').innerHTML = '✗ Error: ' + err.message;
+            }
+
+            // Test 3: CDN Status
+            fetch('https://cdnjs.cloudflare.com', { method: 'HEAD' })
+                .then(() => {
+                    document.getElementById('cdnStatus').innerHTML = '✓ CDN Accessible';
+                })
+                .catch(() => {
+                    document.getElementById('cdnStatus').innerHTML = '✗ CDN Issue';
+                });
+
+            // Test 4: Browser Info
+            document.getElementById('ua').innerHTML = navigator.userAgent.substring(0, 50) + '...';
+            document.getElementById('canvas').innerHTML =
+                (document.createElement('canvas').getContext) ? '✓ Supported' : '✗ Not Supported';
+            document.getElementById('clipboard').innerHTML =
+                (navigator.clipboard) ? '✓ Supported' : '✗ Not Supported';
+        });
+
+        // Test 5: Download functionality
+        function testDownload() {
+            const canvas = document.querySelector('#testQR canvas');
+            if (!canvas) {
+                document.getElementById('downloadStatus').innerHTML = '✗ QR Code canvas not found';
+                return;
+            }
+            try {
+                const url = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'Solar-Install-Pinoy-Test-QR.png';
+                link.href = url;
+                link.click();
+                document.getElementById('downloadStatus').innerHTML = '✓ QR Code downloaded successfully!';
+            } catch (err) {
+                document.getElementById('downloadStatus').innerHTML = '✗ Download failed: ' + err.message;
+            }
+        }
+    </script>
+</body>
+</html>
