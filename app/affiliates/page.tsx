@@ -38,7 +38,7 @@ export default function AffiliatesPage() {
         </div>
 
         <p style={{ color: '#94a3b8', marginBottom: '30px' }}>
-          If you're not redirected automatically, click the button below:
+          If you&apos;re not redirected automatically, click the button below:
         </p>
 
         <a

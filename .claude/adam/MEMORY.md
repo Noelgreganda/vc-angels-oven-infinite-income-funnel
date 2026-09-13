@@ -89,10 +89,11 @@
 
 ### ✅ SIP Affiliate Invitation System
 - **Issue:** QR code pointing to broken URL with `~~` placeholder
-- **Fix:** Generated correct QR code pointing to `https://solarinstallpinoy.com/affiliate-sign-up`
+- **Fix:** Generated correct QR code pointing to `https://sipai-legal.web.app/qa/`
 - **Status:** ✅ DEPLOYED & WORKING
 - **Date:** 2026-09-13
-- **QR Code:** affiliate-qr-code.txt (verified working)
+- **QR Code:** `public/sip-affiliate-signup-qr.png` (decoded back and verified)
+- **Note:** `solarinstallpinoy.com` is not registered yet; QR encodes the Firebase URL directly
 
 ---
 
@@ -100,7 +101,7 @@
 
 ### 2026-09-13 - SIP Affiliate QR Code
 - **Status:** ✅ LIVE
-- **URL:** https://solarinstallpinoy.com/affiliate-sign-up
+- **URL:** https://sipai-legal.web.app/qa/
 - **QR Code:** Generated and verified working
 - **Trainees:** Can scan QR code to access affiliate signup
 - **Distribution:** Ready for print/digital sharing

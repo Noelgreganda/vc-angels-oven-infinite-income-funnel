@@ -18,8 +18,8 @@ interface AffiliateConfig {
 }
 
 const AFFILIATE_CONFIG: AffiliateConfig = {
-  domain: 'https://solarinstallpinoy.com',
-  affiliatePath: '/affiliate-sign-up',
+  domain: 'https://sipai-legal.web.app',
+  affiliatePath: '/qa/',
   companyName: 'Solar Install Pinoy',
   description: 'Join Our Affiliate Program',
   contactEmail: 'affiliate@solarinstallpinoy.com',

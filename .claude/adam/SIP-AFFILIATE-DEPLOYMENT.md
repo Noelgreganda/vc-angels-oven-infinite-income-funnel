@@ -1,106 +1,45 @@
-# SIP Affiliate Program - Complete Deployment
+# SIP Affiliate Program - QR Code & Signup Link
 
-**Status:** ✅ DEPLOYED & READY
+**Status:** Verified working (2026-09-13)
 
----
-
-## 🎯 Architecture
+## The one link that works
 
 ```
-QR Code / Direct Link
-        ↓
-https://solarinstallpinoy.com/affiliate-sign-up
-        ↓
-[Next.js Redirect + Fallback Page]
-        ↓
 https://sipai-legal.web.app/qa/
-        ↓
-[Firebase Affiliate Signup Form]
 ```
 
----
+Firebase Hosting project `sipai-legal`. This is the affiliate signup form
+trainees fill in (name, phone, email, Messenger profile, FB group membership).
 
-## 📋 What's Fixed
+`solarinstallpinoy.com` is NOT registered yet (DNS_PROBE_FINISHED_NXDOMAIN),
+so nothing may point there until the domain is bought and connected to
+Firebase Hosting. When that happens, add it as a custom domain in the
+`sipai-legal` Firebase project and the QR below keeps working unchanged
+(the QR encodes the Firebase URL directly, not the custom domain).
 
-✅ **Redirect:** `/affiliate-sign-up` → Firebase form  
-✅ **Fallback page:** Client-side redirect backup  
-✅ **QR code:** Points to correct URL  
-✅ **Domain:** `solarinstallpinoy.com` configured  
-✅ **Firebase:** `sipai-legal.web.app/qa/` hosting form  
+## The QR code
 
----
+File: `public/sip-affiliate-signup-qr.png` (1024x1024, error correction H)
 
-## 🔗 URLs
+Generated with the `qrcode` library and decoded back with `jsqr` to confirm
+it encodes exactly `https://sipai-legal.web.app/qa/`.
 
-### For Trainees
-- **Direct Link:** `https://solarinstallpinoy.com/affiliates`
-- **Redirects to:** `https://sipai-legal.web.app/qa/`
-- **QR Code:** Points to `solarinstallpinoy.com/affiliates`
+Regenerate/verify (from the repo root; `qrcode`, `jsqr`, `pngjs` are devDependencies):
+```
+npm install
+node .claude/adam/make-qr.js public/sip-affiliate-signup-qr.png
+```
+The script exits non-zero if the image cannot be decoded or decodes to a different URL.
 
-### For Testing
-1. Open: `https://solarinstallpinoy.com/affiliate-sign-up`
-2. Should redirect to Firebase form
-3. Form should load and be fillable
-4. After submit → confirmation/next step
+## Distribution
 
----
+- Print the PNG on flyers / training slides
+- Share the link directly in Messenger / FB group
+- `affiliate-invitation.html` in this folder is a hostable landing page
+  that renders the same QR plus the requirements list
 
-## 🚀 Deployment Checklist
+## Notes
 
-- [x] Next.js redirects configured
-- [x] Redirect page created
-- [x] QR code generated (points to correct URL)
-- [x] Documentation complete
-- [x] Ready to deploy
-
----
-
-## 📍 Files Changed
-
-- `next.config.ts` - Added affiliate redirects
-- `app/affiliate-sign-up/page.tsx` - Redirect page (backup)
-- `.claude/adam/SIP-AFFILIATE-DEPLOYMENT.md` - This doc
-
----
-
-## ✨ Affiliate Signup Flow
-
-1. **Trainee scans QR code** or visits `solarinstallpinoy.com/affiliate-sign-up`
-2. **Redirect happens** (Next.js or page redirect)
-3. **Firebase form loads** at `sipai-legal.web.app/qa/`
-4. **Trainee fills form:** Name, phone, email, messenger profile, FB group
-5. **Submission processed** by Firebase backend
-6. **Confirmation** (email/dashboard/redirect)
-
----
-
-## 🧪 How to Test
-
-1. Open on phone: `https://solarinstallpinoy.com/affiliate-sign-up`
-2. Should redirect to Firebase form
-3. Try submitting test form
-4. Verify confirmation received
-
----
-
-## 🎯 QR Code Details
-
-**URL Encoded:** `https://solarinstallpinoy.com/affiliate-sign-up`  
-**Final Destination:** `https://sipai-legal.web.app/qa/`  
-**Status:** ✅ Valid & Working  
-
-Generate QR with any generator using: `https://solarinstallpinoy.com/affiliate-sign-up`
-
----
-
-## 📊 Status
-
-- **Deployment:** ✅ READY
-- **Testing:** Ready for QA
-- **Production:** Can go live
-- **Trainees:** Can start using immediately
-
----
-
-**Last Updated:** 2026-09-13  
-**Version:** 1.0 - Complete & Deployed
+- The `/affiliates` and `/affiliate-sign-up` routes added to this Next.js app
+  redirect to the Firebase form, but this app is not deployed at
+  `solarinstallpinoy.com`, so they are inert until that domain exists.

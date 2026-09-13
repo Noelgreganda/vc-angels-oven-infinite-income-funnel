@@ -21,7 +21,7 @@ export default function AffiliateSignUpPage() {
     }}>
       <div style={{ textAlign: 'center' }}>
         <h1>Redirecting to affiliate signup...</h1>
-        <p>If you're not redirected automatically, <a href="https://sipai-legal.web.app/qa/" style={{ color: '#60a5fa' }}>click here</a></p>
+        <p>If you&apos;re not redirected automatically, <a href="https://sipai-legal.web.app/qa/" style={{ color: '#60a5fa' }}>click here</a></p>
       </div>
     </div>
   );
