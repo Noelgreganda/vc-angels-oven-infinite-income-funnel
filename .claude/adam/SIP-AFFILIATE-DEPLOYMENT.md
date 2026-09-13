@@ -33,9 +33,9 @@ https://sipai-legal.web.app/qa/
 ## 🔗 URLs
 
 ### For Trainees
-- **Direct Link:** `https://solarinstallpinoy.com/affiliate-sign-up`
+- **Direct Link:** `https://solarinstallpinoy.com/affiliates`
 - **Redirects to:** `https://sipai-legal.web.app/qa/`
-- **QR Code:** Points to `solarinstallpinoy.com/affiliate-sign-up`
+- **QR Code:** Points to `solarinstallpinoy.com/affiliates`
 
 ### For Testing
 1. Open: `https://solarinstallpinoy.com/affiliate-sign-up`
