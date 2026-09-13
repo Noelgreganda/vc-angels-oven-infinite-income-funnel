@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Install Pinoy - Affiliate Invitation</title>
+    <!-- Using alternative QR library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(to bottom right, #0f172a, #1e293b);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: #60a5fa;
+            margin-bottom: 8px;
+        }
+
+        .header-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .qr-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            text-align: center;
+        }
+
+        #qrcode {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .qr-description {
+            color: #cbd5e1;
+        }
+
+        .button {
+            background-color: #2563eb;
+            color: white;
+            font-weight: 600;
+            padding: 8px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .button:disabled {
+            background-color: #64748b;
+            cursor: not-allowed;
+        }
+
+        .requirements {
+            margin-top: 24px;
+        }
+
+        .requirements h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .requirements ul {
+            list-style: none;
+        }
+
+        .requirements li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        .bullet {
+            color: #60a5fa;
+            margin-top: 4px;
+        }
+
+        .link-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .link-input-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .link-input {
+            flex: 1;
+            background-color: #334155;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            border: none;
+        }
+
+        .link-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .action-section {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .action-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .action-subtitle {
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+
+        .action-list {
+            list-style: none;
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .action-list li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            border-top: 1px solid #475569;
+            padding-top: 24px;
+            margin-top: 32px;
+        }
+
+        .contact-email {
+            color: #60a5fa;
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .debug-info {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3b82f6;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 16px;
+            font-size: 12px;
+            color: #93c5fd;
+            font-family: monospace;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .card {
+                border: 1px solid #ccc;
+                background: white;
+            }
+            .debug-info {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="successMessage" class="success-message">
+        ✓ Affiliate link copied to clipboard!
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-subtitle">Thought for 6s</div>
+            <div class="header-title">Join Our Affiliate Program</div>
+        </div>
+
+        <!-- QR Code Section -->
+        <div class="card">
+            <div class="qr-container">
+                <div id="qrcode" style="min-height: 256px; display: flex; align-items: center; justify-content: center;">
+                    <p style="color: #64748b;">Generating QR code...</p>
+                </div>
+                <p class="qr-description">Scan to sign up as a Solar Install Pinoy affiliate</p>
+                <button class="button" onclick="downloadQRCode()" id="downloadBtn">
+                    ⬇ Download QR Code
+                </button>
+                <div class="debug-info" id="debugInfo"></div>
+            </div>
+        </div>
+
+        <!-- Requirements Section -->
+        <div class="card">
+            <div class="requirements">
+                <h3>What you need to sign up:</h3>
+                <ul>
+                    <li><span class="bullet">•</span> <span>Full name</span></li>
+                    <li><span class="bullet">•</span> <span>Phone number</span></li>
+                    <li><span class="bullet">•</span> <span>Email address</span></li>
+                    <li><span class="bullet">•</span> <span>Messenger profile link</span></li>
+                    <li><span class="bullet">•</span> <span>Facebook group membership</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Direct Link Section -->
+        <div class="card">
+            <div class="link-section">
+                <h3>Or use this link:</h3>
+                <div class="link-input-wrapper">
+                    <input
+                        type="text"
+                        id="affiliateLink"
+                        class="link-input"
+                        readonly
+                        value="https://solarinstallpinoy.com/affiliate-sign-up"
+                    >
+                    <button class="button" onclick="copyToClipboard()" title="Copy to clipboard">
+                        📋
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Section -->
+        <div class="action-section">
+            <div class="action-title">Ready to train affiliates! 🚀</div>
+            <div class="action-subtitle">You can now:</div>
+            <ul class="action-list">
+                <li>✓ Print this page to share with potential affiliates</li>
+                <li>✓ Download the QR code as a PNG image</li>
+                <li>✓ Copy the affiliate link to share digitally</li>
+                <li>✓ Display on your website or marketing materials</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Questions? Email: <span class="contact-email">affiliate@solarinstallpinoy.com</span></p>
+        </div>
+    </div>
+
+    <script>
+        const affiliateUrl = 'https://solarinstallpinoy.com/affiliate-sign-up';
+        let qrCanvas = null;
+
+        function initQRCode() {
+            const qrElement = document.getElementById('qrcode');
+
+            try {
+                // Clear previous content
+                qrElement.innerHTML = '';
+
+                // Generate QR code
+                QRCode.toCanvas(qrElement, affiliateUrl, {
+                    width: 256,
+                    margin: 1,
+                    color: {
+                        dark: '#000000',
+                        light: '#ffffff'
+                    },
+                    errorCorrectionLevel: 'H'
+                }, function (err) {
+                    if (err) {
+                        console.error('QR Error:', err);
+                        qrElement.innerHTML = '<p style="color: #ef4444;">Failed to generate QR code: ' + err + '</p>';
+                        document.getElementById('debugInfo').innerHTML = 'Error: ' + err.message;
+                    } else {
+                        document.getElementById('debugInfo').innerHTML = '✓ QR Code generated successfully<br>URL: ' + affiliateUrl;
+                        qrCanvas = qrElement.querySelector('canvas');
+                        document.getElementById('downloadBtn').disabled = false;
+                    }
+                });
+            } catch (err) {
+                console.error('Exception:', err);
+                qrElement.innerHTML = '<p style="color: #ef4444;">Exception: ' + err.message + '</p>';
+                document.getElementById('debugInfo').innerHTML = 'Exception: ' + err.message;
+            }
+        }
+
+        function copyToClipboard() {
+            const link = document.getElementById('affiliateLink');
+            navigator.clipboard.writeText(link.value).then(() => {
+                const message = document.getElementById('successMessage');
+                message.classList.add('show');
+                setTimeout(() => message.classList.remove('show'), 2000);
+            }).catch(err => {
+                console.error('Copy failed:', err);
+                alert('Copy failed: ' + err.message);
+            });
+        }
+
+        function downloadQRCode() {
+            if (!qrCanvas) {
+                alert('QR code not generated yet. Please wait...');
+                return;
+            }
+
+            try {
+                const url = qrCanvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'Solar-Install-Pinoy-Affiliate-QR.png';
+                link.href = url;
+                link.click();
+            } catch (err) {
+                console.error('Download failed:', err);
+                alert('Download failed: ' + err.message);
+            }
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            console.log('Page loaded, initializing QR code...');
+            console.log('URL to encode:', affiliateUrl);
+            console.log('QRCode library available:', typeof QRCode !== 'undefined');
+
+            if (typeof QRCode === 'undefined') {
+                document.getElementById('qrcode').innerHTML = '<p style="color: #ef4444;">QRCode library failed to load. Check CDN connection.</p>';
+                document.getElementById('debugInfo').innerHTML = 'Error: QRCode library not loaded from CDN';
+            } else {
+                initQRCode();
+            }
+        });
+
+        // Timeout fallback
+        setTimeout(() => {
+            if (document.getElementById('qrcode').innerHTML.includes('Generating')) {
+                document.getElementById('qrcode').innerHTML = '<p style="color: #ef4444;">QR code generation timeout. Please refresh the page.</p>';
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
