@@ -45,7 +45,9 @@
 - **Owner:** Noelgreganda
 - **Key Features:** Messenger webhook (`app/api/webhook/messenger/route.ts`) with per-tenant kill switch (`getTenant()` / `clients.status`, `fb_pages.is_active`), per-resource rate limiting (`checkQuota()`, `client_rate_limits`), dedup, canary flag (`client_capabilities`), `deployment_events` log. Reply generation is NOT built yet -- ingestion/safety only.
 - **Deployment:** ❌ Not deployed. No Vercel project connected, no env vars set anywhere. Local build verified (`npm run build` passes) but nothing is live.
-- **Blocked on:** (1) Vercel project (manual, vercel.com/import), (2) real Supabase env vars set directly in Vercel, (3) a real first tenant -- `fb_pages` has zero rows; onboarding needs an actual Facebook Page ID + access token, not a placeholder.
+- **Vercel:** connected -- `https://fb-monetization-mvp-brainatlas-243p7ar66.vercel.app`. Env vars set. Not independently verified from this session (egress policy blocks `*.vercel.app` and `graph.facebook.com` from this container -- confirmed via the proxy's own status endpoint, not assumed). Noel should confirm directly: GET `/api/webhook/messenger?hub.mode=subscribe&hub.verify_token=bogus&hub.challenge=x` should return the literal 9-byte body `Forbidden`.
+- **First tenant onboarded (partially):** "Today in Philippine History" -- `clients.id = 2b59149d-d5bf-4213-b3a7-a7faf60258f4`, `status = 'onboarding'` (honest -- not `'active'` yet, see blocker below), `client_capabilities` canary flag set. Real Facebook Page ID confirmed: `1646483675599523` [stated by Noel].
+- **Blocked on:** the `fb_pages` row can't be created yet -- `access_token_secret`, `verify_token_secret`, `app_secret_secret` are all `NOT NULL` in the real schema, and we only have the Page ID. Need, from Noel: (1) a Page access token (Meta Graph API Explorer or Page settings), (2) the Facebook App's App Secret (Meta App dashboard -> Settings -> Basic), (3) a verify token Noel picks himself (any string he'll also enter into the Meta webhook subscription config). Once those exist, insert `fb_pages` and flip `clients.status` to `'active'`.
 
 #### 4. **vc-angels-oven-parent**
 - **Status:** Available
