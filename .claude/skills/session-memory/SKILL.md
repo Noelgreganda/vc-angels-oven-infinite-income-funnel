@@ -28,7 +28,13 @@ Context and tool calls are a finite resource. Re-reading a file that hasn't chan
 
 If any of this is taking real effort or turning into its own multi-step process, it's being done wrong -- it's a habit, not an audit.
 
-**On-demand (full audit):** when asked for one, look back across the session for: files read more than once without changing, facts verified more than once, near-duplicate notes written to more than one place, and edits that could have been batched but weren't. Produce a **consolidation plan** -- concrete and short, not a lecture.
+**On-demand (full audit):** when asked for one, look back across the session, and across a project's persisted notes files, for:
+- Files read more than once without changing, facts verified more than once, and edits that could have been batched but weren't.
+- Duplicate information -- the same fact in multiple files, or the same section repeated within one file.
+- **Stale information** -- a note describing something as current when it's since finished, changed, or been superseded. This is a different problem from duplication: the note isn't wrong because it's copied somewhere else, it's wrong because time passed. Check an actual signal (what the note claims vs. what's true now, an actual last-modified date) rather than guessing from how old a file looks.
+- **Bloated or dormant files** -- a file that's grown large relative to how narrow its actual topic is (candidate to split into active + archive), or one nothing has touched in a long time relative to how active the project around it is (candidate to archive). Judge this relative to the project's own pace, not a fixed size or day count -- a hardcoded threshold is a guess dressed up as a rule.
+
+Produce a **consolidation plan** -- concrete and short, not a lecture.
 
 ## The four rules
 
