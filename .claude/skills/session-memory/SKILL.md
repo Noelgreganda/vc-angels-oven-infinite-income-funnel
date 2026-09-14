@@ -33,9 +33,13 @@ If any of this is taking real effort or turning into its own multi-step process,
 ## The four rules
 
 1. **Read once per file per conversation.** Once a file's contents are known and nothing has changed it since, don't re-read it -- use what's already in context. If it might have changed (another edit happened, meaningful time passed in a long session), a cheap check (a diff, a modified-time check) beats a full re-read.
-2. **Batch writes.** Multiple edits to the same file, or several independent tool calls with no dependency between them, belong in as few round-trips as possible -- one full rewrite instead of five incremental edits when the end state is already known; parallel calls in the same turn instead of sequential ones when nothing depends on another's result.
-3. **Consolidate duplication.** When the same information ends up written in more than one place (two notes files saying almost the same thing, a fact re-explained in a new file instead of updated in the existing one), merge it into one canonical place rather than letting copies drift apart and quietly disagree later.
-4. **Summary before read.** Before doing a full read of something large, check whether a concise summary already exists (from earlier in this conversation, or a persisted notes file) that already answers the actual question. Use that first, and only fall back to the full read when the summary doesn't have enough detail.
+2. **Match the tool to the size of the change, and batch what belongs together.** A single small change is a targeted edit, not a full rewrite -- rewriting a whole file to change one line re-sends everything that didn't change. Several real changes to the same file, or several independent tool calls with no dependency between them, belong in one pass -- one multi-edit sweep instead of five sequential round-trips, parallel calls in the same turn instead of sequential ones when nothing depends on another's result.
+3. **Consolidate duplication, at two levels.** The same fact repeated in different files gets one canonical copy, not several that can quietly drift apart and disagree. Separately, when two files turn out to be substantially about the same thing (not just one overlapping fact, but genuinely redundant structure), flag that as a merge-the-files opportunity rather than living with both indefinitely.
+4. **Summary before read, with the choice made explicit.** Before doing a full read of something large, check whether a concise summary already exists (from earlier in this conversation, or a persisted notes file) that already answers the actual question. Offer that summary and say plainly that a full read is available if it's not enough -- let the person decide whether the summary covers it, rather than unilaterally deciding it does.
+
+## Writing to persisted notes
+
+When something goes into a persisted notes file, mark whether it's what the user actually said or something inferred/assumed along the way. A later turn -- yours after compaction, or a different session reading the same file -- needs to tell those apart: `planning-master`'s "is this already decided" check depends on knowing whether a note is a confirmed fact or a guess that was never verified.
 
 ## Surviving compaction
 
