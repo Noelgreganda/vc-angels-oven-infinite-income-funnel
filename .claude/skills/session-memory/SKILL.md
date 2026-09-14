@@ -22,7 +22,11 @@ Context and tool calls are a finite resource. Re-reading a file that hasn't chan
 
 ## Two modes
 
-**Continuous (every operation):** a cheap glance, not a formal step. Before reading a file, check whether it's already known from earlier in this session and nothing has changed it -- if so, use what's already there instead of re-reading. Before making several edits, batch them into as few tool calls as possible instead of one-at-a-time round-trips. If this check itself is taking real effort or turning into its own multi-step process, it's being done wrong -- it's a habit, not an audit.
+**Continuous (every operation):** a cheap glance, not a formal step.
+- Before a read: if it's already known from earlier in this session and nothing has changed it, use that instead of re-reading. If a full read still seems needed, check whether a summary of the relevant lines already exists (in-conversation or in a persisted notes file) that actually answers the question -- fetch the full file only when it doesn't.
+- Before a write: if it looks like it's restating something that already exists elsewhere (a note, a config value, a decision), say so and point at the existing copy instead of writing a second one. Batch it with any other pending edit to the same file or independent edits with no dependency between them, rather than one-at-a-time round-trips.
+
+If any of this is taking real effort or turning into its own multi-step process, it's being done wrong -- it's a habit, not an audit.
 
 **On-demand (full audit):** when asked for one, look back across the session for: files read more than once without changing, facts verified more than once, near-duplicate notes written to more than one place, and edits that could have been batched but weren't. Produce a **consolidation plan** -- concrete and short, not a lecture.
 
