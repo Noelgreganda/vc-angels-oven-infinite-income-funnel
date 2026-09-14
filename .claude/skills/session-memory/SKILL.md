@@ -28,6 +28,8 @@ Context and tool calls are a finite resource. Re-reading a file that hasn't chan
 
 If any of this is taking real effort or turning into its own multi-step process, it's being done wrong -- it's a habit, not an audit.
 
+**Ask first only when it's a content decision, not an efficiency one.** Reusing a cache or batching independent writes has no downside -- just do it; asking permission first would cost more than the thing it's protecting. Ask first when the action changes what the notes actually *say*: which copy of a duplicated fact survives (and which gets removed), whether a file gets split or archived, whether two files should merge. Those can go wrong in a way that loses information; skipping a redundant re-read never can.
+
 **On-demand (full audit):** when asked for one, look back across the session, and across a project's persisted notes files, for:
 - Files read more than once without changing, facts verified more than once, and edits that could have been batched but weren't.
 - Duplicate information -- the same fact in multiple files, or the same section repeated within one file.
@@ -35,6 +37,8 @@ If any of this is taking real effort or turning into its own multi-step process,
 - **Bloated or dormant files** -- a file that's grown large relative to how narrow its actual topic is (candidate to split into active + archive), or one nothing has touched in a long time relative to how active the project around it is (candidate to archive). Judge this relative to the project's own pace, not a fixed size or day count -- a hardcoded threshold is a guess dressed up as a rule.
 
 Produce a **consolidation plan** -- concrete and short, not a lecture.
+
+**Worth proposing before being asked**, once clutter has clearly piled up -- the same duplication keeps getting flagged, a project's notes have visibly sprawled across many files, the same continuous-mode check keeps firing on the same thing. Propose running the audit; don't invent a specific file count, size, or day threshold to trigger on, and don't promise a specific savings number -- there's nothing that makes any fixed number the right one for every project, and no way to actually measure the savings in advance.
 
 ## The four rules
 
@@ -54,3 +58,9 @@ Long sessions eventually get summarized/compacted, which can quietly erase the "
 ## Output
 
 When run as a full audit: a short **consolidation plan** -- a list of specific redundancies found (file X read N times, note Y duplicated across two files, five sequential edits that were really one change) and the specific merge/stop-doing-this/batch-this-instead action for each. Skip abstract commentary; name the actual files and facts involved.
+
+## Example: Right Way vs Wrong Way
+
+**WRONG (without this skill):** Re-read `app/api/webhook/messenger/route.ts` in full every time a later question touched it, even though nothing had changed it since the last read. Made four separate one-line edits to that same file across four separate tool calls instead of one pass. Wrote "canary tenants: Today in Philippine History, Lifestyles" into a new note, not noticing the same list already lived in an earlier message's plan.
+
+**RIGHT (this skill):** Read the webhook route once, then answered every later question about it from what was already known. When four small fixes to the same file came up over the course of the session, made them together in one pass instead of four round-trips. Before writing the canary-tenant list anywhere new, checked whether it already existed and pointed at that instead of writing a second copy.
