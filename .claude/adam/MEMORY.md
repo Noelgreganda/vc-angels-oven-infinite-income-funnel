@@ -134,9 +134,21 @@
 
 ### ✅ SIP Affiliate Invitation System
 - **Issue:** QR code pointing to broken URL with `~~` placeholder
-- **Fix:** Generated correct QR code pointing to `https://sipai-legal.web.app/qa/`
-- **Status:** ✅ DEPLOYED & WORKING
-- **Date:** 2026-09-13
+- **Fix (2026-09-13, itself wrong -- superseded 2026-09-17):** Generated a QR
+  code pointing to `https://sipai-legal.web.app/qa/` and marked it "verified"
+  because `jsqr` decoded the image back to that same string. That check
+  never made an HTTP request -- `sipai-legal` is the GitHub repo name, not
+  a real Firebase Hosting site, and there was no `/qa/` route anywhere.
+  This shipped live and was printed for the 2026-09-17 training before
+  being caught.
+- **Real fix (2026-09-17):** QR now points to
+  `https://solar-install-pinoy.web.app/affiliate-program` -- the actual
+  live route (`sipai-legal` repo's `src/App.jsx` + `AffiliateSignup.jsx`,
+  served by the real `solar-install-pinoy` Firebase project). Re-verified
+  by decoding the regenerated PNG. If any printed copies of the old QR
+  are already with trainees, tell them the correct link directly.
+- **Status:** ✅ Fixed 2026-09-17 -- see `.claude/adam/SIP-AFFILIATE-DEPLOYMENT.md`
+  for the full correction before trusting the 2026-09-13 status below.
 - **QR Code:** `public/sip-affiliate-signup-qr.png` (decoded back with `jsqr` and verified)
 - **Full details:** `.claude/adam/SIP-AFFILIATE-DEPLOYMENT.md` (single source of truth for this)
 - **Decision:** `solarinstallpinoy.com` is not registered and there's no plan
@@ -154,11 +166,20 @@
 ## 🚀 Deployment Log
 
 ### 2026-09-13 - SIP Affiliate QR Code
-- **Status:** ✅ LIVE
-- **URL:** https://sipai-legal.web.app/qa/
-- **QR Code:** Generated and verified working
-- **Trainees:** Can scan QR code to access affiliate signup
-- **Distribution:** Ready for print/digital sharing
+- **Status:** ⚠️ Was live at a URL that does not resolve -- see 2026-09-17 entry below.
+- **URL:** ~~https://sipai-legal.web.app/qa/~~ (never a real Firebase Hosting site)
+- **QR Code:** Generated; the "verified" check only confirmed the image decodes
+  back to that string, never that the URL resolves to anything.
+- **Trainees:** Could NOT actually reach a real page by scanning this.
+- **Distribution:** Was printed/distributed before the error was caught.
+
+### 2026-09-17 - SIP Affiliate QR Code (correction)
+- **Status:** ✅ LIVE, real URL
+- **URL:** https://solar-install-pinoy.web.app/affiliate-program
+- **QR Code:** Regenerated, decoded back and confirmed matches this URL exactly.
+- **Trainees:** Can now actually reach the real affiliate signup form.
+- **Outstanding:** Any already-printed copies of the 2026-09-13 QR code need
+  the correct link given to trainees directly -- this fix doesn't reach paper.
 
 ### 2026-09-14 - SIP AI: 11 Cloud Functions
 - **Status:** ✅ LIVE (verified in GitHub Actions logs, not just assumed)

@@ -1,15 +1,42 @@
 # SIP Affiliate Program - QR Code & Signup Link
 
-**Status:** Verified working (2026-09-13)
+**Status:** Fixed 2026-09-17 -- the 2026-09-13 version pointed at a URL that
+does not exist. See "2026-09-17 correction" below before trusting anything
+else in this file's history.
 
 ## The one link that works
 
 ```
-https://sipai-legal.web.app/qa/
+https://solar-install-pinoy.web.app/affiliate-program
 ```
 
-Firebase Hosting project `sipai-legal`. This is the affiliate signup form
-trainees fill in (name, phone, email, Messenger profile, FB group membership).
+This is the real, live affiliate signup form trainees fill in (name, phone,
+email, Messenger profile, FB group membership) -- `src/pages/affiliate/AffiliateSignup.jsx`
+in the `sipai-legal` repo, routed at `/affiliate-program` (`src/App.jsx`),
+served by the `solar-install-pinoy` Firebase project (the only real one --
+confirmed against `firebase.json`, `.github/workflows/deploy.yml`'s
+`PROJECT_ID`, and `docs/STATUS_AND_BLOCKERS.md` in that repo).
+
+### 2026-09-17 correction
+
+The previous version of this file and QR code pointed at
+`https://sipai-legal.web.app/qa/` -- **`sipai-legal` is the GitHub repo
+name, not a real Firebase Hosting site**, and there was never a `/qa/`
+route anywhere in the actual app. This was live and printed for the
+2026-09-17 affiliate training before being caught. Root cause: the
+verification script (`make-qr.js`) only ever confirmed the QR image
+*decodes back to the intended URL string* -- it never made an HTTP
+request, so a URL that doesn't resolve to anything decodes back
+identically to one that does. "Verified working" described the encoding
+pipeline, not the destination. Fixed by pointing at the independently-
+confirmed-live URL above; if outbound HTTP is available when this is
+next touched, actually curl the URL before trusting it again, not just
+decode the QR.
+
+**If any printed/physical copies of the old QR code are already in
+trainees' hands, they need to be told the correct link directly
+(`https://solar-install-pinoy.web.app/affiliate-program`) -- fixing this
+file does not fix paper already handed out.**
 
 `solarinstallpinoy.com` is NOT registered (DNS_PROBE_FINISHED_NXDOMAIN) and
 there's no plan to buy it, so the QR and every link below point straight at
@@ -21,7 +48,10 @@ this project unless that decision changes.
 File: `public/sip-affiliate-signup-qr.png` (1024x1024, error correction H)
 
 Generated with the `qrcode` library and decoded back with `jsqr` to confirm
-it encodes exactly `https://sipai-legal.web.app/qa/`.
+it encodes exactly `https://solar-install-pinoy.web.app/affiliate-program`.
+Decoding only proves the image encodes this string correctly -- it does
+NOT prove the URL resolves to a real page. See the 2026-09-17 correction
+above.
 
 Regenerate/verify (from the repo root; `qrcode`, `jsqr`, `pngjs` are devDependencies):
 ```
