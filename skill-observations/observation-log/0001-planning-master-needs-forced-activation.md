@@ -1,7 +1,7 @@
 ---
 id: 1
 title: "planning-master's pre-build discovery step needs forced activation, not description-matching"
-status: open
+status: actioned
 type: open-source
 skill: [planning-master]
 proposes_skill: []
@@ -10,9 +10,8 @@ area: "activation / session-start enforcement"
 date: 2026-09-23
 session_context: "Real incident in the sipai-legal / Adam Command Center project: a full parallel Messenger-bot system (sip-ai-legal, this repo) was built from scratch before an existing, functionally-equivalent system (sip-ai-legacy -- 89 Cloud Functions, its own Firestore collections, its own hosting site) was discovered. Legacy wasn't version-controlled until 2026-09-17 and wasn't visible to the session that started the new build; it was found by accident, via a screenshot of a working dashboard that matched nothing in this repo, not by a structured discovery step. The user (Noel) raised this directly after declining to install a third-party 'give Claude persistent memory' tool (Graphify), asking instead for a guarantee this kind of duplicate build never happens again."
 parked_until:
-resolved:
-resolution:
-reference:
+resolved: 2026-09-23
+resolution: "Actioned the project-specific portion only (part 1 of the suggested improvement): sipai-legal's CLAUDE.md now has a standing 'Before starting ANY new build' section pointing to new docs/BUILD_SOP.md, a mandatory four-question discovery pass (checked/live in both sipai-legal and sip-ai-legacy) that runs before any new feature/function/project in that repo -- committed a877823, pushed to sipai-legal main. The remaining portion (part 2: a structural, config-level activation mechanism for the planning-master SKILL ITSELF, applying across all projects, not just this one) was not done -- editing the skill file is a substantial change requiring the skill-authoring staging process, out of scope of what was asked this turn (an engineering-file + SOP update, not a skill rewrite). Spun off as carrier observation 0002."
 ---
 
 **Issue:** planning-master's own stated first question is "Do we already have this built? Check what's live/deployed" -- exactly the check that would have caught the sip-ai-legacy duplication before a parallel system was built. But nothing forced that check to run at the start of the original build: the skill is description-matched only, with no session-start or pre-build forcing function. task-observer (in this same installation) solves the identical problem for itself via a CLAUDE.md instruction plus a SessionStart hook that injects an open-observation count every session -- a structural, config-level activation layer that survives an agent simply not recognizing "this looks like a build task" from the opening message. planning-master has no equivalent: it relies entirely on the agent noticing, from a task's phrasing, that a discovery pass is warranted, which is exactly the class of failure its own description says it exists to prevent.
